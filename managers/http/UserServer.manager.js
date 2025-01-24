@@ -6,7 +6,6 @@ const rateLimit         = require('express-rate-limit');
 const app               = express();
 const compression       = require('compression');
 
-const config = require('../../config/index.config.js');
 const schoolRoutes = require('../api/school.api');
 const classroomRoutes = require('../api/classroom.api');
 const studentRoutes = require('../api/student.api');
@@ -33,7 +32,7 @@ module.exports = class UserServer {
         app.use(helmet());
         // CORS Configuration
         const corsOptions = {
-            origin: config.dotEnv.ALLOWED_ORIGINS || '*', // Define allowed origins for security
+            origin: process.env.ALLOWED_ORIGINS || '*', // Define allowed origins for security
             methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
             allowedHeaders: 'Content-Type,Authorization'
         };
