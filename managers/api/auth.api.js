@@ -1,5 +1,6 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
+const config = require('../../config/index.config.js');
 const userManager = require('../entities/models/User.manager');
 const router = express.Router();
 
@@ -23,7 +24,7 @@ router.post('/auth/token', async (req, res) => {
 
         const token = jwt.sign(
             tokenPayload, // Payload with user details
-            process.env.JWT_SECRET, // Secret key from environment variables
+            config.dotEnv.JWT_SECRET, // Secret key from environment variables
             { expiresIn: '1h' } // Token validity of 1 hour
         );
 
